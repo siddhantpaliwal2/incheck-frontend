@@ -1,15 +1,10 @@
 'use client';
 import React from 'react';
-import { Check } from 'lucide-react'
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { useRouter } from 'next/navigation';
+import { Check } from 'lucide-react';
 
-export default function LandingPage() {
-  const [phoneNumber, setPhoneNumber] = React.useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-  };
+export default function Home() {
+  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-white flex flex-col p-6">
@@ -25,31 +20,24 @@ export default function LandingPage() {
           AI Mommy in your iMessage
         </h1>
 
-        <form onSubmit={handleSubmit} className="w-full">
-          <div className="w-full flex space-x-2 mb-6">
-            <Input 
-              type="tel" 
-              placeholder="Enter your phone number" 
-              className="flex-grow"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-            <Button type="submit" className="bg-green-500 hover:bg-green-600 text-white">
-              Text me
-            </Button>
-          </div>
-        </form>
+      
 
         <p className="text-gray-600">
           Get helpful reminders texted to you throughout the day, like:
         </p>
-        <ul className="text-gray-600 mt-2">
+        <ul className="text-gray-600 mt-2 mb-5">
           <li>💧 Drink water</li>
           <li>🏋️‍♀️ Exercise</li>
           <li>👨‍💻 Get work done</li>
         </ul>
+        <button 
+          onClick={() => router.push('/sign-up')}
+          className="bg-green-500 text-white px-6 py-3 rounded-lg mb-6 hover:bg-green-600 transition-colors"
+        >
+          Text me
+        </button>
       </main>
     </div>
-  )
+  );
 }
 
